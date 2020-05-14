@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot Manager</title>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <script src="scripts/script.js"></script>
+</head>
+<body>
+    <h1 id='title'>Bot Manager</h1>
+    <div id="streamDiv">
+        <div id="titleDiv">
+            <input type="text" value="<%= info.status %>" name="titulo" size="50" id="titulo" class="inputs" required minlength="1">
+            <button class="buttons" id="titleUpdate" onclick="updateTitulo()">Update</button>
+        </div>
+        <div id="gameDiv">
+            <input type="text" value="<%= info.game %>" name="game" size="50" id="game" class="inputs" required minlength="1">
+            <button class="buttons" id="gameUpdate" onclick="updateGame()">Update</button>
+        </div>
+        <button class="buttons" id="streamUpdateBtn" onclick="updateStream()">Update both</button>
+    </div>
+    
+    <div id="controlDiv">
+        <button class="buttons" id="siguiente">Siguiente</button>
+        <button class="buttons" id="atras">Atras</button>
+        <select name="choice" id="listaHorario">
+            <option>Minecraft</option>
+            <option>League of Legends</option>
+            <option>VALORANT</option>
+        </select>
+        <button class="buttons" id="seleccionar" onclick="seleccionar()">Seleccionar</button>
+    </div>
+</body>
+</html>

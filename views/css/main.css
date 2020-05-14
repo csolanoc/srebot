@@ -1,0 +1,40 @@
+*{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body{
+  background: gray;
+  
+}
+
+div{
+  margin-bottom: 10px;
+}
+
+button{
+  background: rgb(255, 194, 79);
+  border: solid black 2px;
+  text-align: center;
+  font-style: normal;
+  font-weight: 100;
+  letter-spacing: 1px;
+}
+
+.inputs{
+  background:gray;
+  border: solid black 2px;
+  text-align: center;
+  font-style: normal;
+  font-weight: 100;
+  letter-spacing: 1px;
+}
+
+#listaHorario{
+  margin-left: 100px;
+  background: gray;
+  border: solid black 2px;
+}
+
+#streamDiv{
+  display: flex;
+}
