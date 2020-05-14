@@ -113,7 +113,7 @@ app.use(express.static('views'));
 
 
 //Routers
-app.get('twitch-rbot.herokuapp.com/',(request, response) =>{
+app.get('/',(request, response) =>{
     axios.kraken.get('/channels/31869467').then(function (res){
         let data = res.data;
         //console.log(data);
