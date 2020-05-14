@@ -10,7 +10,7 @@ const kraken = axios.create({
     headers: {
         'Accept': 'rhinobot/vnd.twitchtv.v5+json',
         'Authorization': 'OAuth k585j6bg90wonurh2irmtadjhkcd7m',
-        'Client-ID': 'sxga9ngmnuanb3bmu6hm3fo3bsmrjz'
+        'Client-ID': `${process.env.CLIENT_ID}`
     }
 });
 

@@ -1,4 +1,4 @@
-
+require('dotenv').config()
 //tmi
 const tmi = require('tmi.js');
 const opts = require('./settings/opts');
@@ -105,6 +105,7 @@ app.set('view engine', 'ejs');
 
 app.listen(app.get('port'), () =>{
     console.log(`Server on port: ${app.get('port')}`);
+    console.log(process.env.BASE_URL)
 })
 
 //Middlewares

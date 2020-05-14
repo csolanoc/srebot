@@ -15,15 +15,15 @@ function seleccionar() {
 function updateStream() {
     let newTitle = document.getElementById("titulo").value;
     let newGame = document.getElementById("game").value;
-    document.location.href=`http://localhost:3000/updatestream/?title=${newTitle}&game=${newGame}`;
+    document.location.href=`${process.env.BASE_URL}updatestream/?title=${newTitle}&game=${newGame}`;
 }
 
 function updateTitulo() {
     let newTitle = document.getElementById("titulo").value;
-    document.location.href=`http://localhost:3000/updatestream/title?title=${newTitle}`;
+    document.location.href=`${process.env.BASE_URL}updatestream/title?title=${newTitle}`;
 }
 
 function updateGame() {
     let newGame = document.getElementById("game").value;
-    document.location.href=`http://localhost:3000/updatestream/game?game=${newGame}`;
+    document.location.href=`${process.env.BASE_URL}updatestream/game?game=${newGame}`;
 }
