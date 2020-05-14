@@ -100,7 +100,7 @@ const app = express();
 
 //Settings
 app.set('appName','Bot Manager');
-app.set('port', 3000);
+app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'ejs');
 
 app.listen(app.get('port'), () =>{
