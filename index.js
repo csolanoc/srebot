@@ -36,47 +36,47 @@ function onMessageHandler(target, sender, msg, self){
 
 
 //tmi --- Timer's Function
-function setTimers(target, sender, msg, self, reply){
-    console.log(timers.commandList);
+// function setTimers(target, sender, msg, self, reply){
+//     console.log(timers.commandList);
 
-    let timer = timers.commandList.find(n => n.name === 'redes');
-    timer.timerA = true;
-    timer.timer = setInterval(() => {
-        return client.say(channel, `​Recuerda seguirnos en nuestras redes sociales para estar al tanto del evento y futuros eventos realizados por la comunidad - Twitter: https://twitter.com/speedrunespanol - Discord: https://discord.gg/4hrfa25 - Youtube: https://www.youtube.com/channel/UCHnjAF0-ZNCHWKqxzdfh0sw`);
-    }, timer.time);
-    timer = timers.commandList.find(n => n.name === 'discord');
-    timer.timerA = true;
-    timer.timer = setInterval(() => {
-        return client.say(channel, `¡Entra al Discord de la comunidad! http://www.discord.gg/SRE`);
-    }, timer.time);
-    /*timer = timers.commandList.find(n => n.name === 'donaciones');
-    timer.timerA = true;
-    timer.timer = setInterval(() => {
-        return client.say(channel, `¿Quieres mandar un donativo para Direct Relief? El donativo mínimo son $5, y puedes dirigirlos para un incentivo o sorteo que haya en el momento. Aquí tienes el enlace: https://gamesdonequick.com/tracker/ui/donate/crdq , ¡no olvides añadir [SRE] al principio de tu alias para ser leído por los anfitriones en nuestra retransmisión!`);
-    }, timer.time);*/
-    /*timer = timers.commandList.find(n => n.name === 'hashtag');
-    timer.timerA = true;
-    timer.timer = setInterval(() => {
-        return client.say(channel, `¡No olvides dar Follow al canal, y compartir en Twitter bajo el hashtag #CRDQEspanol !`);
-    }, timer.time);*/
-    /*
-    timer = timers.commandList.find(n => n.name === 'horario');
-    timer.timerA = true;
-    timer.timer = setInterval(() => {
-        return client.say(channel, `Horario: ${horaroMan.horariolink}`);
-    }, timer.time);*/
-    timer = timers.commandList.find(n => n.name === 'info');
-    timer.timerA = true;
-    timer.timer = setInterval(() => {
-        return client.say(channel, `SpeedrunsEspañol nos trae la segunda retransmisión oficial de la maratón online Speedruns Colombia, ¡donde se presentarán diferentes juegos por varios runners de la comunidad colombiana, durante 16 horas de transmisión continua!`);
-    }, timer.time);
-    /*
-    timer = timers.commandList.find(n => n.name === 'coms');
-    timer.timerA = true;
-    timer.timer = setInterval(() => {
-        return client.say(channel, `SpeedrunsEspañol nos trae de viernes a domingo la Retransmisión Oficial en Español de la nueva maratón de la GDQ: la Corona Relief Done Quick. Con objeto de luchar contra el COVID-19, la Games Done Quick organiza esta maratón online benéfica para Direct Relief. ¡Ven y quédate a disfrutar de los mejores speedrunners del mundo, peleando juntos por este enemigo común!`);
-    }, 3500);*/
-}
+//     let timer = timers.commandList.find(n => n.name === 'redes');
+//     timer.timerA = true;
+//     timer.timer = setInterval(() => {
+//         return client.say(channel, `​Recuerda seguirnos en nuestras redes sociales para estar al tanto del evento y futuros eventos realizados por la comunidad - Twitter: https://twitter.com/speedrunespanol - Discord: https://discord.gg/4hrfa25 - Youtube: https://www.youtube.com/channel/UCHnjAF0-ZNCHWKqxzdfh0sw`);
+//     }, timer.time);
+//     timer = timers.commandList.find(n => n.name === 'discord');
+//     timer.timerA = true;
+//     timer.timer = setInterval(() => {
+//         return client.say(channel, `¡Entra al Discord de la comunidad! http://www.discord.gg/SRE`);
+//     }, timer.time);
+//     /*timer = timers.commandList.find(n => n.name === 'donaciones');
+//     timer.timerA = true;
+//     timer.timer = setInterval(() => {
+//         return client.say(channel, `¿Quieres mandar un donativo para Direct Relief? El donativo mínimo son $5, y puedes dirigirlos para un incentivo o sorteo que haya en el momento. Aquí tienes el enlace: https://gamesdonequick.com/tracker/ui/donate/crdq , ¡no olvides añadir [SRE] al principio de tu alias para ser leído por los anfitriones en nuestra retransmisión!`);
+//     }, timer.time);*/
+//     /*timer = timers.commandList.find(n => n.name === 'hashtag');
+//     timer.timerA = true;
+//     timer.timer = setInterval(() => {
+//         return client.say(channel, `¡No olvides dar Follow al canal, y compartir en Twitter bajo el hashtag #CRDQEspanol !`);
+//     }, timer.time);*/
+//     /*
+//     timer = timers.commandList.find(n => n.name === 'horario');
+//     timer.timerA = true;
+//     timer.timer = setInterval(() => {
+//         return client.say(channel, `Horario: ${horaroMan.horariolink}`);
+//     }, timer.time);*/
+//     timer = timers.commandList.find(n => n.name === 'info');
+//     timer.timerA = true;
+//     timer.timer = setInterval(() => {
+//         return client.say(channel, `SpeedrunsEspañol nos trae la segunda retransmisión oficial de la maratón online Speedruns Colombia, ¡donde se presentarán diferentes juegos por varios runners de la comunidad colombiana, durante 16 horas de transmisión continua!`);
+//     }, timer.time);
+//     /*
+//     timer = timers.commandList.find(n => n.name === 'coms');
+//     timer.timerA = true;
+//     timer.timer = setInterval(() => {
+//         return client.say(channel, `SpeedrunsEspañol nos trae de viernes a domingo la Retransmisión Oficial en Español de la nueva maratón de la GDQ: la Corona Relief Done Quick. Con objeto de luchar contra el COVID-19, la Games Done Quick organiza esta maratón online benéfica para Direct Relief. ¡Ven y quédate a disfrutar de los mejores speedrunners del mundo, peleando juntos por este enemigo común!`);
+//     }, 3500);*/
+// }
 
 
 //------------------------------------------------------------------------------------------------------------
@@ -85,6 +85,7 @@ function setTimers(target, sender, msg, self, reply){
 
 //HoraroManager
 // const horaroMan = require('../srebot_col/horaro/horaroMan');
+const requestRQ = require('./settings/requestH');
 
 //------------------------------------------------------------------------------------------------------------
 
@@ -119,8 +120,10 @@ app.get('/',(request, response) =>{
         let data = res.data;
         //console.log(data);
         response.render('index.ejs',{info: data});
-
     });
+    requestRQ.horario.get(process.env.HORARIO_URL).then(async function (response){
+        console.log(response.data);
+    })
 })
 
 app.get('/updatestream?',(request, response) =>{
