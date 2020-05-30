@@ -25,11 +25,18 @@
         <button class="buttons" id="siguiente">Siguiente</button>
         <button class="buttons" id="atras">Atras</button>
         <select name="choice" id="listaHorario">
-            <option>Minecraft</option>
-            <option>League of Legends</option>
-            <option>VALORANT</option>
+            <% for(let i=0; i< horaro.data.items.length ;i++) {%>
+                <option value="<%=horaro.data.items[i].data[4]%>"><%=horaro.data.items[i].data[1]%></option>
+            <% } %>
+        </select>
+        <select name="choiceRunner" id="listaHorarioRunner" hidden>
+            <% for(let i=0; i< horaro.data.items.length ;i++) {%>
+                <option><%=horaro.data.items[i].data[0]%></option>
+            <% } %>
         </select>
         <button class="buttons" id="seleccionar" onclick="seleccionar()">Seleccionar</button>
+        <h1><%=console.log(horaro.data.items.length)%></h1>
+        <h1>"<%=horaro.data.items[0].data[0]%>"</h1>
     </div>
 </body>
 </html>

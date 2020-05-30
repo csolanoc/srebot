@@ -1,9 +1,10 @@
 const axios = require('axios');
 
+// Info importante para la solicitud
 baseURLHoraro = 'https://horaro.org/-/api/v1';
 baseURLOengus = 'https://oengus.io/api/marathon/';
 const horario = axios.create({
-    baseURL: `${baseURLOengus}`
+    baseURL: `${baseURLHoraro}`
 })
 
 function get(url) {
@@ -20,4 +21,18 @@ function put(url) {
     });
 }
 
-module.exports = {horario, get, put};
+
+// Info para el horario
+let horaroCounter = 0;
+let horaroCounterMax = -1;
+let active = false;
+baseTitle = `[ESP] Juegos Horribles Hechos Deprisa - Maratón de Speedruns Awful - `;
+
+
+
+
+// Exportar informacion
+module.exports = {horario, get, put, baseURLHoraro, baseTitle, horaroCounter, horaroCounterMax, active};
+
+
+

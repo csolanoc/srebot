@@ -5,11 +5,11 @@ const opts = {
         secure: true
     },
     identity: {
-        username: "RhinoC",
-        password: "k585j6bg90wonurh2irmtadjhkcd7m"
+        username: `${process.env.CHANNEL_NAME}`,
+        password: `${process.env.AUTH_TOKEN}`
     },
     channels: [
-        "RhinoC"
+        `${process.env.CHANNEL_NAME}`
     ]
 };
 
