@@ -4,7 +4,7 @@ let coms = require('../commandList');
 let scheduleUrl = `${process.env.HORARIO_URL}`;
 let text = ``;
 let horario;
-let nw = false;
+let nw = horarioRQ.estimadoEdited;
 let textComplete = text;
 
 module.exports = async ({ channel, tags, message, args, reply }) => {
@@ -23,12 +23,14 @@ module.exports = async ({ channel, tags, message, args, reply }) => {
       case '-e': {
         if (tags.mod === true || tags['display-name'] === axios.channelName) {
           textComplete = message.substring(com[0].length + com[1].length + 2);
-          nw = !nw;
+          horarioRQ.estimadoEdited = true;
+          nw = horarioRQ.estimadoEdited;
           return reply(`Se ha modificado el comando !${command.name}`);
         }
         break;
       }
       default: {
+        nw = horarioRQ.estimadoEdited;
         return update(horario, reply);
       }
     }
@@ -41,31 +43,12 @@ function update(horario, reply) {
   let estimadoC;
   let estimadoIndex;
   try {
-    /*
-    for (let index = 0; index < hor.data.columns.length; index++) {
-      if(hor.data.columns[index] === 'Estimado'){
-        estimadoC = index;
-      }
-    }*/
     let estimado = horario.data.items[horarioRQ.horaroCounter - 1].length_t / 60;
-    /*
-    if(estimado.startsWith('[')){
-      estimadoIndex = estimado.search(']');
-      estimado = estimado.substring(1, estimadoIndex);
-    }*/
-
-    /*
-    if(estimado[0] === '*' && estimado[1] === '*'){
-      estimado = estimado.substring(2, hor.data.items[horario.horaroCounter-1].data[estimadoC].length-2);
-    }else if(estimado[0] === '*'){
-        estimado = estimado.substring(1, hor.data.items[horario.horaroCounter-1].data[estimadoC].length-1);
-    }*/
-
     estimadoEncoded = encodeURIComponent(estimado);
     if (nw === false) {
       return reply(`${text} ${decodeURIComponent(estimado)} minutos.`);
     } else {
-      return reply(`${textComplete} .`);
+      return reply(`${textComplete}`);
     }
   } catch (err) {
     console.error(err);

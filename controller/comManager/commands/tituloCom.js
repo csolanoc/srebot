@@ -5,20 +5,16 @@ module.exports = async ({ channel, tags, message, args, reply }) => {
     console.log(axios.channelName);
     console.log(tags['display-name']);
     if (tags.mod === true || tags['display-name'] === axios.channelName) {
-        try{
+        try {
             const com = message.split(' ');
             const params = message.substring(com[0].length + 1);
-            if(params !== ''){
+            if (params !== '') {
                 const newTitle = encodeURIComponent(params);
-                if(changeTitle(newTitle)){
-                    return reply(`Se cambió el titulo a ${decodeURIComponent(baseTitle)}${decodeURIComponent(newTitle)}.`);
-                }else{
-                    return reply(`No se pudo cambiar titulo`);
-                }
-            }else{
+                changeTitle(newTitle, reply)
+            } else {
                 return reply(`Por favor ingrese un titulo.`);
             }
-        }catch(err){
+        } catch (err) {
             console.error(err);
         }
     } else {
@@ -26,12 +22,12 @@ module.exports = async ({ channel, tags, message, args, reply }) => {
     }
 }
 
-function changeTitle(title) {
+function changeTitle(title, reply) {
     let query = `/channels/${axios.channel}?channel[status]=${baseTitle}` + title;
     console.log(query);
-      axios.kraken.put(query).then(function (response){
-          return true;
-      }).catch(function (err){
-          return false;
-      })
-  }
+    axios.kraken.put(query).then(function (response) {
+        return reply(`Se cambió el titulo a ${decodeURIComponent(baseTitle)}${decodeURIComponent(title)}.`);
+    }).catch(function (err) {
+        return reply(`No se pudo cambiar titulo`);
+    })
+}

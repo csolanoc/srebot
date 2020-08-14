@@ -5,11 +5,12 @@ const fs = require('fs');
 let scheduleUrl = `${process.env.HORARIO_URL}`;
 let text = ``;
 let textComplete = text;
-let nw = false;
+let nw = horarioRQ.runnerEdited;
 let horario;
+let notHorario = !horarioRQ.active;
 
 module.exports = async ({ channel, tags, message, args, reply }) => {
-  console.log(scheduleUrl);
+
   if (horarioRQ.active === false) return reply(`No se ha iniciado el horario`);
   horarioRQ.horario.get(scheduleUrl).then(async function (response) {
     const com = message.split(' ');
@@ -26,13 +27,15 @@ module.exports = async ({ channel, tags, message, args, reply }) => {
       case '-e': {
         if (tags.mod === true || tags['display-name'] === axios.channelName) {
           textComplete = message.substring(com[0].length + com[1].length + 2);
-          nw = !nw;
+          horarioRQ.runnerEdited = true;
+          nw = horarioRQ.runnerEdited;
           return reply(`Se ha modificado el comando !${command.name}`);
         }
         break;
       }
 
       default: {
+        nw = horarioRQ.runnerEdited;
         return update(horario, reply);
         break;
       }
@@ -47,7 +50,7 @@ function update(horario, reply) {
   let runnerIndex;
   try {
     for (let index = 0; index < horario.data.columns.length; index++) {
-      if (horario.data.columns[index] === 'Runners') {
+      if (horario.data.columns[index] === 'Runner/s') {
         runnerC = index;
       }
     }
@@ -66,9 +69,9 @@ function update(horario, reply) {
     runnerEncoded = encodeURIComponent(runner);
 
     if (nw === false) {
-      return reply(`${text} ${decodeURIComponent(runner)}.`);
+      return reply(`${text} ${decodeURIComponent(runner)}`);
     } else {
-      return reply(`${textComplete}.`);
+      return reply(`${textComplete}`);
     }
   } catch (err) {
     console.error(err);

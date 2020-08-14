@@ -5,7 +5,7 @@ const fs = require('fs');
 let scheduleUrl = `${process.env.HORARIO_URL}`;
 let text = ``;
 let textComplete = text;
-let nw = false;
+let nw = horarioRQ.categoriaEdited;
 let horario;
 
 module.exports = async ({ channel, tags, message, args, reply }) => {
@@ -25,13 +25,15 @@ module.exports = async ({ channel, tags, message, args, reply }) => {
       case '-e': {
         if (tags.mod === true || tags['display-name'] === axios.channelName) {
           textComplete = message.substring(com[0].length + com[1].length + 2);
-          nw = !nw;
+          horarioRQ.categoriaEdited = true;
+          nw = horarioRQ.categoriaEdited;
           return reply(`Se ha modificado el comando !${command.name}`);
         }
         break;
       }
 
       default: {
+        nw = horarioRQ.categoriaEdited;
         return update(horario, reply);
         break;
       }
@@ -63,9 +65,9 @@ function update(horario, reply) {
     }
     categoriaEncoded = encodeURIComponent(categoria);
     if (nw === false) {
-      return reply(`${text} ${categoria}.`);
+      return reply(`${text} ${categoria}`);
     } else {
-      return reply(`${textComplete}.`);
+      return reply(`${textComplete}`);
     }
   } catch (err) {
     console.error(err);

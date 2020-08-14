@@ -43,4 +43,4 @@ function commandManag(client, send) {
 }
 
 
-module.exports = commandManag;
+module.exports = {commandManag, commands};

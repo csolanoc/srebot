@@ -26,13 +26,18 @@ function put(url) {
 let horaroCounter = 0;
 let horaroCounterMax = -1;
 let active = false;
-baseTitle = `[ESP] Juegos Horribles Hechos Deprisa - Maratón de Speedruns Awful - `;
+let nextRuns = [];
+baseTitle = `${process.env.STREAM_TITLE}`;
+let comsEdited = false;
+let runnerEdited = false;
+let categoriaEdited = false;
+let estimadoEdited = false;
 
 
 
 
 // Exportar informacion
-module.exports = {horario, get, put, baseURLHoraro, baseTitle, horaroCounter, horaroCounterMax, active};
+module.exports = {horario, get, put, baseURLHoraro, baseTitle, horaroCounter, horaroCounterMax, active, nextRuns, comsEdited, runnerEdited, categoriaEdited, estimadoEdited};
 
 
 

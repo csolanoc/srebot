@@ -10,10 +10,6 @@ module.exports = async({channel, tags, message, args, reply}) =>{
         comSec: com[1],
         paramSec: com[2]
     };
-    // console.log(com);
-    // console.log(command);
-    // console.log(command.time);
-    // console.log(command.timerA);
     switch (params['comSec']) {
         case '-t':{
             if(command.timerA === true){

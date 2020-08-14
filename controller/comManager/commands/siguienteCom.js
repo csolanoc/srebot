@@ -1,5 +1,6 @@
 const axios = require('../../../settings/request');
 const horarioRQ = require('../../../settings/requestH');
+const { horaroCounter } = require('../../../settings/requestH');
 let scheduleUrl = process.env.HORARIO_URL;
 let baseTitle = encodeURIComponent(horarioRQ.baseTitle);
 let channel = process.env.CHANNEL_NAME;
@@ -37,6 +38,10 @@ module.exports = async ({ channel, tags, message, args, reply }) => {
             } else {
               return reply(`No puede devolverse a la run ${horarioRQ.horaroCounter - 2}, no existe.`);
             }
+            horarioRQ.comsEdited = false;
+            horarioRQ.runnerEdited = false;
+            horarioRQ.categoriaEdited = false;
+            horarioRQ.estimadoEdited = false;
             update(horario, reply);
           }
           break;
@@ -48,6 +53,10 @@ module.exports = async ({ channel, tags, message, args, reply }) => {
           } else {
             text = message.substring(com[0].length + com[1].length + 2).toLowerCase();
             horarioRQ.active = true;
+            horarioRQ.comsEdited = false;
+            horarioRQ.runnerEdited = false;
+            horarioRQ.categoriaEdited = false;
+            horarioRQ.estimadoEdited = false;
             updatexJuego(horario, text, reply);
           }
           break;
@@ -58,6 +67,10 @@ module.exports = async ({ channel, tags, message, args, reply }) => {
             return reply(`La programación no existe, coloque una correcta entre 1 y ${horarioRQ.horaroCounterMax}`);
           } else {
             horarioRQ.active = true;
+            horarioRQ.comsEdited = false;
+            horarioRQ.runnerEdited = false;
+            horarioRQ.categoriaEdited = false;
+            horarioRQ.estimadoEdited = false;
             update(horario, reply);
           }
           break;
@@ -69,7 +82,12 @@ module.exports = async ({ channel, tags, message, args, reply }) => {
         }
         default: {
           horarioRQ.active = true;
+          horarioRQ.comsEdited = false;
+          horarioRQ.runnerEdited = false;
+          horarioRQ.categoriaEdited = false;
+          horarioRQ.estimadoEdited = false;
           update(horario, reply);
+          // await nextRuns();
           break;
         }
       }
@@ -92,10 +110,13 @@ function update(horario, reply) {
       if (horario.data.columns[index] === 'hiddenGame') {
         hiddenC = index;
       }
-      if (horario.data.columns[index] === 'Runners') {
+      if (horario.data.columns[index] === 'Runner/s') {
         runnerC = index;
       }
     }
+
+    console.log(hiddenC);
+    console.log(horarioRQ.horaroCounter);
 
     let game = horario.data.items[horarioRQ.horaroCounter].data[hiddenC];
     if (game.startsWith('[')) {
@@ -152,8 +173,8 @@ function currentRun(game, runner, title, reply) {
   var query = `/channels/${process.env.CHANNEL_ID}?channel[status]=` + encodeURIComponent(horarioRQ.baseTitle) + `${title} por ${runner}` + '&channel[game]=' + game;
   console.log(query);
   axios.kraken.put(query).then( function (response){
-    reply(`Se cambió el titulo a ${decodeURIComponent(baseTitle)} ${decodeURIComponent(title)}.`);
-    reply(`Se cambió el juego a ${decodeURIComponent(game)}.`);
+    reply(`Se cambió el titulo a ${decodeURIComponent(baseTitle)} ${decodeURIComponent(title)}`);
+    reply(`Se cambió el juego a ${decodeURIComponent(game)}`);
     return true;
   }).catch(function (err){
     // console.error(err);
@@ -171,14 +192,14 @@ function updatexJuego(horario, juego, reply) {
     if (horario.data.columns[index] === 'Juego') {
       juegoC = index;
     }
-    if (horario.data.columns[index] === 'Runners') {
+    if (horario.data.columns[index] === 'Runner/s') {
       runnerC = index;
     }
     if (horario.data.columns[index] === 'hiddenGame') {
       hiddenC = index;
     }
   }
-
+  console.log("---------- "+ juego + " ----------")
   for (let index = 0; index < horario.data.items.length; index++) {
     let compare = horario.data.items[index].data[juegoC].toLowerCase();
     if (compare[0] === '*' && compare[1] === '*') {
@@ -186,12 +207,17 @@ function updatexJuego(horario, juego, reply) {
     } else if (compare[0] === '*') {
       compare = compare.substring(1, compare.length - 1);
     }
-    if (compare === juego) {
+
+    if (compare.trim() === juego.trim()) {
       indexJ = index;
       break;
     }
   }
   horarioRQ.horaroCounter = indexJ;
+
+
+  console.log(hiddenC);
+  console.log(indexJ);
 
   let game = horario.data.items[horarioRQ.horaroCounter].data[hiddenC];
   if (game.startsWith('[')) {
@@ -236,3 +262,106 @@ function updatexJuego(horario, juego, reply) {
   horarioRQ.horaroCounter++;
   currentRun(gameEncoded, runnerEncoded, titleEncoded, reply);
 }
+
+
+// async function nextRuns() {
+//   await horarioRQ.horario.get(process.env.HORARIO_URL).then(function (response) {
+//       let juegoC;
+//       let hor = response.data;
+
+//       // console.log(hor);
+
+//       for (let index = 0; index < hor.data.columns.length; index++) {
+//           if (hor.data.columns[index] === 'Juego') {
+//               juegoC = index;
+//           }
+//       }
+
+//       horarioMax = hor.data.items.length;
+//       let horaroCounter = horarioRQ.horaroCounter;
+//       let nextRuns = [];
+
+//       if (horarioMax - horaroCounter > 4) {
+//           let title = hor.data.items[horaroCounter].data[juegoC];
+//           let title2 = hor.data.items[horaroCounter + 1].data[juegoC];
+//           let title3 = hor.data.items[horaroCounter + 2].data[juegoC];
+//           let title4 = hor.data.items[horaroCounter + 3].data[juegoC];
+//           if (title.startsWith('[')) {
+//               titleIndex = title.search(']');
+//               title = title.substring(1, titleIndex);
+//           }
+//           if (title2.startsWith('[')) {
+//               titleIndex = title2.search(']');
+//               title2 = title2.substring(1, titleIndex);
+//           }
+//           if (title3.startsWith('[')) {
+//               titleIndex = title3.search(']');
+//               title3 = title3.substring(1, titleIndex);
+//           }
+//           if (title4.startsWith('[')) {
+//               titleIndex = title4.search(']');
+//               title4 = title4.substring(1, titleIndex);
+//           }
+//           nextRuns.push(title);
+//           nextRuns.push(title2);
+//           nextRuns.push(title3);
+//           nextRuns.push(title4);
+//       }else if(horarioMax - horaroCounter > 3){
+//           let title = hor.data.items[horaroCounter].data[juegoC];
+//           let title2 = hor.data.items[horaroCounter + 1].data[juegoC];
+//           let title3 = hor.data.items[horaroCounter + 2].data[juegoC];
+//           if (title.startsWith('[')) {
+//               titleIndex = title.search(']');
+//               title = title.substring(1, titleIndex);
+//           }
+//           if (title2.startsWith('[')) {
+//               titleIndex = title2.search(']');
+//               title2 = title2.substring(1, titleIndex);
+//           }
+//           if (title3.startsWith('[')) {
+//               titleIndex = title3.search(']');
+//               title3 = title3.substring(1, titleIndex);
+//           }
+//           nextRuns.push(title);
+//           nextRuns.push(title2);
+//           nextRuns.push(title3);
+//       }else if(horarioMax - horaroCounter > 2){
+//           let title = hor.data.items[horaroCounter].data[juegoC];
+//           let title2 = hor.data.items[horaroCounter + 1].data[juegoC];
+//           if (title.startsWith('[')) {
+//               titleIndex = title.search(']');
+//               title = title.substring(1, titleIndex);
+//           }
+//           if (title2.startsWith('[')) {
+//               titleIndex = title2.search(']');
+//               title2 = title2.substring(1, titleIndex);
+//           }
+//           nextRuns.push(title);
+//           nextRuns.push(title2);
+//       }else{
+//           let title = hor.data.items[horaroCounter].data[juegoC];
+//           if (title.startsWith('[')) {
+//               titleIndex = title.search(']');
+//               title = title.substring(1, titleIndex);
+//           }
+//           if (title2.startsWith('[')) {
+//               titleIndex = title2.search(']');
+//               title2 = title2.substring(1, titleIndex);
+//           }
+//           nextRuns.push(title);
+//       }
+
+      
+
+//       let salida = nextRuns.join("    ");
+
+//       var fs = require('fs');
+//       fs.writeFile('./nextRuns.txt', `${salida}`, function (err) {
+//           // If an error occurred, show it and return
+//           if (err) return console.error(err);
+//           // Successfully wrote to the file!
+//       });
+
+//       console.log(salida);
+//   })
+// }

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            fetch('https://horaro.org/-/api/v1/schedules/2611l3e22e06sa7a21', 
+            {
+                method: 'GET',
+                headers:{
+                    'Access-Control-Allow-Origin': 'null'
+                },
+            })
+            .then(response => response.json())
+            .then(data =>{
+                console.log(data);
+            })
+            .catch(err =>{
+                console.error(err);
+            })
+        })
+    </script>
+</head>
+<body>
+
+    <!-- <img src="./images/plantilla_sgdq2020.png" alt="plantilla"> -->
+
+    <div id="left-bar">
+        <div id="coms-title">
+            <div class="text" id="coms-text">COMENTARISTAS</div>
+        </div>
+        <div id="coms">
+            <div id="coms-inner"></div>
+        </div>
+
+        <div id="next-runs">
+            <div id="runs-container">
+                <div class="text" id="runs">MÁS TARDE</div>
+            </div>
+            <div id="lines-next">
+                <div id="lines-container">
+                    <ul class="text" id="nextList">
+                        <li>Gunvolt Chronicles: Luminous Avenger iX</li>
+                        <li>Castle of Illusion Starring Mickey Mouse</li>
+                        <li>The Legend of Zelda: Twilight Princess HD</li>
+                        <li>Quest for Glory I: So You Want To Be A Hero (EGA)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="bot-bar">
+        <div id="sgdq-logo">
+        </div>
+        <img src="./images/sre-logo-ng.png" alt="sre-logo" id="sre-logo">
+        <div id="social">
+            <div id="social-container">
+                <div id="marco-social">
+                    <div id="marco-bg"></div>
+                </div>
+            </div>
+            <ul>
+                <li>
+                    <div id="social-message">
+                        <span class="text">Síguenos en nuestras redes sociales</span>
+                    </div>
+                </li>
+                <li>
+                    <div id="twitter">
+                        <img id="tw-icon" src="./images/twitter.svg" alt="twitter">
+                        <span class="text">@SPEEDRUNESPANOL</span>
+                    </div>
+                </li>
+                <li>
+                    <div id="youtube">
+                        <img id="yt-icon" src="./images/youtube.svg" alt="youtube">
+                        <span class="text" id="yt-text">SPEEDRUNSESPANOL</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <script>
+
+            document.addEventListener('DOMContentLoaded', function(){
+                let tl = gsap.timeline({repeat:-1, repeatDelay: 20});
+                let tl2 = gsap.timeline({repeat:-1, repeatDelay: 20});
+                let offset = -120;
+
+                //social-message
+                tl2.to('#marco-social',{duration: 1, y: offset-10})
+                tl.to("#social-message", {duration: 1, opacity: 1, y: offset, ease: "back.out(1)"})
+                tl.to("#social-message", {duration: 1, opacity: 0, y: -offset}, "+=5")
+                tl2.to('#marco-social',{duration: 1, y: -offset+10}, "+=5")
+
+                //twitter
+                tl2.to('#marco-social',{duration: 1, y: offset-10}, "+=5")
+                tl.to("#twitter", {duration: 1, opacity: 1, y: offset, ease: "back.out(1)"}, "+=5.3")
+                tl.to("#twitter", {duration: 1, opacity: 0, y: -offset}, "+=5")
+                tl2.to('#marco-social',{duration: 1, y: -offset+10}, "+=5.3")
+
+                //youtube
+                tl2.to('#marco-social',{duration: 1, y: offset-10}, "+=5")
+                tl.to("#youtube", {duration: 1, opacity: 1, y: offset, ease: "back.out(1)"}, "+=5.3")
+                tl.to("#youtube", {duration: 1, opacity: 0, y: -offset}, "+=5")
+                tl2.to('#marco-social',{duration: 1, y: -offset+10}, "+=5.3")
+            })
+        </script>
+
+        <!-- <div id="sre-logo">
+        </div> -->
+    </div>
+    <div id="left-container">
+        <div id="line-left"></div>
+    </div>
+    <div id="bot-container">
+        <div id="line-bot"></div>
+    </div>
+    <!-- <div class="cuadro">
+        <h1 class="texto" id="texto1">texto1</h1>
+        <h1 class="texto" id="texto2">texto2</h1>
+        <h1 class="texto" id="texto3">texto3</h1>
+        <h1 class="texto" id="texto4">texto4</h1>
+    </div> -->
+</body>
+</html>

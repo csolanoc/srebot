@@ -21,7 +21,6 @@ module.exports = async ({ channel, tags, message, args, reply }) => {
     } else {
         console.log("Viewer executed command.")
     }
-    //return reply(`@${tags.username}, you rolled a ${num}`);
 }
 
 function changeGame(game) {

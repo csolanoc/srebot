@@ -111,7 +111,7 @@ let commandList = [
         alias: ['comandos', 'commandsList', 'listaCom', 'lista'],
         permissionLevel: 'else',
         action: null,
-        active: true,
+        active: false,
         timerA: false,
         timer: null,
         params: null,
@@ -145,11 +145,11 @@ let commandList = [
         timerA: false,
         timer: setInterval,
         params: ['-t', '-e'],
-        time: 1.98e+6,//1.38e+6
-        note: 'cada 33 minutos muestra comentaristas actuales',
+        time: 2.1e+6,//1.38e+6
+        note: 'cada 35 minutos muestra comentaristas actuales',
         last_invoc: Date.now(),
         cd: 5000,
-        text: 'Comentaristas:'
+        text: `Comentaristas: `
     },
     {
         name: 'redes',
@@ -160,8 +160,8 @@ let commandList = [
         timerA: false,
         timer: setInterval,
         params: ['-t'],
-        time: 3.66e+6,//3.06e+6
-        note: 'cada 61 minutos muestra las redes sociales de SRE',
+        time: 2.7e+6,//3.06e+6
+        note: 'cada 45 minutos muestra las redes sociales de SRE',
         last_invoc: Date.now(),
         cd: 5000,
         text: 'Recuerda seguirnos en nuestras redes sociales para estar al tanto del evento y futuros eventos realizados por la comunidad - Twitter: https://twitter.com/speedrunespanol - Discord: https://discord.gg/4hrfa25 - Youtube: https://www.youtube.com/channel/UCHnjAF0-ZNCHWKqxzdfh0sw'
@@ -175,8 +175,8 @@ let commandList = [
         timerA: false,
         timer: setInterval,
         params: ['-t'],
-        time: 2.4e+6,//1.8e+6
-        note: 'cada 40 minutos muestra el enlace al discord de SRE',
+        time: 3.9e+6,//1.8e+6
+        note: 'cada 65 minutos muestra el enlace al discord de SRE',
         last_invoc: Date.now(),
         cd: 5000,
         text: '¡Entra al Discord de la comunidad! http://www.discord.gg/SRE'
@@ -198,10 +198,10 @@ let commandList = [
     },
     {
         name: 'hashtag',
-        alias: ['schedule'],
+        alias: [''],
         permissionLevel: 'else',
         action: null,
-        active: false,
+        active: true,
         timerA: false,
         timer: setInterval,
         params: ['-t'],
@@ -209,7 +209,7 @@ let commandList = [
         note: 'cada 33 minutos muestra el hashtag usado en twitter para el evento',
         last_invoc: Date.now(),
         cd: 5000,
-        text: '¡No olvides dar Follow al canal, y compartir en Twitter bajo el hashtag #CRDQEspanol !'
+        text: '¡No olvides dar Follow al canal, y compartir en Twitter bajo el hashtag #SGDQ2020Español!'
     },
     {
         name: 'info',
@@ -220,18 +220,18 @@ let commandList = [
         timerA: false,
         timer: setInterval,
         params: ['-t'],
-        time: 2.82e+6,//2.58e+6
-        note: 'cada 47 minutos muestra la informacion del evento',
+        time: 3e+6,//2.58e+6
+        note: 'cada 50 minutos muestra la informacion del evento',
         last_invoc: Date.now(),
         cd: 5000,
-        text: `SpeedrunsEspañol presenta: Juegos Horribles Hechos Deprisa, la maratón de juegos awful donde runners de la comunidad enseñaran juegos increíbles, ¡durante 12 horas de transmisión continua!`
+        text: `¡SpeedrunsEspañol nos trae la retransmisión de la SGDQ2020! La maratón benéfica que brinda su apoyo a Médicos sin Fronteras: organización que brinda asistencia en más de 150 países. ¡Acompáñanos en esta gran evento y por una gran causa durante 7 días de transmisión continua!`
     },
     {
         name: 'donaciones',
         alias: ['donacion', 'donar', 'donate', 'donation'],
         permissionLevel: 'else',
         action: null,
-        active: false,
+        active: true,
         timerA: false,
         timer: setInterval,
         params: ['-t'],
@@ -239,7 +239,7 @@ let commandList = [
         note: 'cada 25 minutos muestra el enlace para donar al evento',
         last_invoc: Date.now(),
         cd: 5000,
-        text: '¿Quieres mandar un donativo para Direct Relief? El donativo mínimo son $5, y puedes dirigirlos para un incentivo o sorteo que haya en el momento. Aquí tienes el enlace: https://gamesdonequick.com/tracker/ui/donate/crdq , ¡no olvides añadir [SRE] al principio de tu alias para ser leído por los anfitriones en nuestra retransmisión!'
+        text: '¿Quieres mandar un donativo para Médicos sin fronteras? El donativo mínimo son $5, y puedes dirigirlos para un incentivo o sorteo que haya en el momento. Aquí tienes el enlace: https://gamesdonequick.com/tracker/ui/donate/crdq , ¡no olvides añadir [SRE] al principio de tu alias para ser leído por los anfitriones en nuestra retransmisión!'
     },
     {
         name: 'twitter',
@@ -250,11 +250,11 @@ let commandList = [
         timerA: false,
         timer: setInterval,
         params: ['-t'],
-        time: 1.5e+6,
+        time: 2.1e+6,
         note: 'cada 25 minutos muestra el enlace del twitter',
         last_invoc: Date.now(),
         cd: 5000,
-        text: `Twitter de la comunidad: http://www.twitter.com/SpeedrunEspanol.`
+        text: `Twitter de la comunidad: twitter.com/SpeedrunEspanol`
     },
     {
         name: 'feedback',
@@ -276,7 +276,7 @@ let commandList = [
         alias: [],
         permissionLevel: 'else',
         action: null,
-        active: false,
+        active: true,
         timerA: false,
         timer: null,
         params: null,
@@ -284,7 +284,7 @@ let commandList = [
         note: 'muestra el stream original.',
         last_invoc: Date.now(),
         cd: 5000,
-        text: ''
+        text: 'Puedes ver la transmisión original aquí: twitch.tv/gamesdonequick'
     },
     {
         name: 'wr',
@@ -299,7 +299,7 @@ let commandList = [
         note: 'muestra pagina de speedrun.com para hallar wr.',
         last_invoc: Date.now(),
         cd: 5000,
-        text: ''
+        text: 'Los mejores tiempos de la mayoría de los juegos los puedes encontrar en speedrun.com , utiliza el buscador que aparece en la parte superior.'
     },
     {
         name: 'ñ',
@@ -314,14 +314,14 @@ let commandList = [
         note: 'ñ',
         last_invoc: Date.now(),
         cd: 5000,
-        text: ''
+        text: 'Ñ en el chat'
     },
     {
         name: 'bidwar',
         alias: ['bidwars','apuesta','apuestas'],
         permissionLevel: 'else',
         action: null,
-        active: false,
+        active: true,
         timerA: false,
         timer: null,
         params: null,
@@ -329,7 +329,7 @@ let commandList = [
         note: 'Muestra el enlace a las bidwars',
         last_invoc: Date.now(),
         cd: 5000,
-        text: ''
+        text: 'Puedes ver todos los incentivos de la SGDQ2020 aquí: gamesdonequick.com/tracker/bids/sgdq2020'
     },
     {
         name: 'estimado',
@@ -359,7 +359,7 @@ let commandList = [
         note: 'Muestra la cateogoría actual',
         last_invoc: Date.now(),
         cd: 5000,
-        text: `Categoría:`
+        text: `Categoría: `
     },
     {
         name: 'glosario',
@@ -374,7 +374,7 @@ let commandList = [
         note: 'Muestra el enlace a el glosario',
         last_invoc: Date.now(),
         cd: 5000,
-        text: ''
+        text: 'Aquí encontrarás el glosario del speedrunning: speedrunslive.com/faq/glossary/'
     },
 ];
 

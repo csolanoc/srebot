@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="main">
+        <% for(let i=0; i< commands.length ;i++) {%>
+            <h1><%=commands[i].name%></h1>
+            <h4><%=commands[i].text%></h4>
+            <h4><%=commands[i].timerA%></h4>
+        <% } %>
+    </div>
+
+    <script>
+        let comando;
+        comando = <%-JSON.stringify(commands)%>;
+    </script>
+</body>
+</html>
